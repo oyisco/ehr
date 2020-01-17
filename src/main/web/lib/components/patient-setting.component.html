@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-card-content>
+        <mat-progress-spinner
+                *ngIf="indexing"
+                class="adf-document-list-loading-margin"
+                [color]="'primary'"
+                [mode]="'indeterminate'">
+        </mat-progress-spinner>
+        <button mat-raised-button color="primary"
+                [matTooltip]="'Re-Index Patients'"
+                [disabled]="indexing"
+                (click)="index()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </mat-card-content>
+</mat-card>

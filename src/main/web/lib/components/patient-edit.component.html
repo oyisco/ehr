@@ -1,0 +1,24 @@
+<div class="lamis-edit-form">
+    <div class="lamis-edit-form-container">
+        <mat-card class="default">
+            <mat-progress-bar mode="determinate" class="session-progress"></mat-progress-bar>
+            <mat-card-content>
+                <td-message label="Saving failed!" sublabel="Please try again later."
+                            color="warn" icon="error" *ngIf="error">
+                </td-message>
+                <json-form #form [model]="entity"
+                           [template]="template"
+                           (dataEvent)="onData($event)">
+                </json-form>
+                <mat-card-actions class="lamis-edit-form-actions">
+                    <button mat-raised-button (click)="previousState()">Back</button>
+                    <button mat-raised-button color='primary'
+                            [disabled]="!form.isValid"
+                            (click)="save()">
+                        {{entity.id !== undefined ? 'Update' : 'Save'}}
+                    </button>
+                </mat-card-actions>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

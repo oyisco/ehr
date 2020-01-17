@@ -1,0 +1,62 @@
+<div class="layout">
+    <div class="list-container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-4">
+                <div class="adf-toolbar--spacer"></div>
+                <td-search-box backIcon="arrow_back" class="push-right-sm"
+                               placeholder="Search here" [debounce]="500"
+                               [(ngModel)]="currentSearch"
+                               (searchDebounce)="searchPatient($event)"
+                               (search)="searchPatient($event)"
+                               (clear)="currentSearch = ''" flex>
+                </td-search-box>
+            </div>
+        </div>
+        <br/>
+        <adf-datatable *ngIf="patients"
+                       [rows]="patients"
+                       [loading]="loading"
+                       [display]="display"
+                       (rowClick)="select($event.value)">
+            <data-columns>
+                <data-column key="name" title="Name" sortable="true"></data-column>
+                <data-column title="Biometric" key="biometric" sortable="true" class="full-width ellipsis-cell">
+                    <ng-template let-context="$implicit">
+                        <mat-checkbox disabled [checked]="context.row.getValue('biometric')"></mat-checkbox>
+                    </ng-template>
+                </data-column>
+                <data-column key="hospitalNum" title="Hospital Num." sortable="true"></data-column>
+                <data-column key="uniqueId" title="Unique ID" sortable="true"></data-column>
+                <data-column key="gender" title="Gender" sortable="true"></data-column>
+                <data-column key="currentStatus" title="Current Status" sortable="true"></data-column>
+                <data-column key="address" title="Address" class="full-width ellipsis-cell"></data-column>
+            </data-columns>
+            <adf-loading-content-template>
+                <ng-template>
+                    <mat-progress-spinner
+                            class="adf-document-list-loading-margin"
+                            [color]="'primary'"
+                            [mode]="'indeterminate'">
+                    </mat-progress-spinner>
+                </ng-template>
+            </adf-loading-content-template>
+        </adf-datatable>
+    </div>
+    <adf-empty-content
+            *ngIf="!patients"
+            icon="blur_on"
+            [title]="'No Patients found'"
+            [subtitle]="'No Patients matching search criteria or no Patients available'">
+    </adf-empty-content>
+        <ngb-pagination [collectionSize]="totalItems"
+                        [(page)]="page"
+                        [pageSize]="itemsPerPage"
+                        [maxSize]="5"
+                        size="sm"
+                        [rotate]="true"
+                        [boundaryLinks]="true"
+                        (pageChange)="loadPage(page)">
+        </ngb-pagination>
+
+</div>
+<speed-dial *ngIf="!path" [links]="links"></speed-dial>

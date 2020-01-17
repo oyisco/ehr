@@ -1,0 +1,16 @@
+<div class="lamis-edit-form">
+    <div class="lamis-edit-form-container">
+        <details-component [template]="template"
+                           [model]="entity">
+        </details-component>
+        <mat-card>
+            <mat-card-content>
+                <mat-card-actions class="lamis-edit-form-actions">
+                    <button mat-raised-button (click)="previousState()">Back</button>
+                    <a mat-button mat-raised-button color="primary"
+                       [routerLink]="['..', 'edit']">Edit</a>
+                </mat-card-actions>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
