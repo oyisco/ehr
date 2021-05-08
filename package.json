@@ -87,7 +87,7 @@
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng-jhipster": "0.11.1",
-    "ng-packagr": "^5.4.3",
+    "ng-packagr": "^10.1.1",
     "ngx-store": "^2.1.0",
     "protractor": "~5.4.0",
     "rollup-plugin-json": "^4.0.0",
